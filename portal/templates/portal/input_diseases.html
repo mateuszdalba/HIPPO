@@ -1,0 +1,18 @@
+{% extends "portal/base.html" %}
+
+{% block page_content %}
+{% load crispy_forms_tags %}
+<h1>Add your current diseases here</h1>
+
+<div class="content-section">
+    <div class="form-group">
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+  
+
+{% endblock %}
