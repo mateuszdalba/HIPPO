@@ -2,7 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import DiseaseForm
-
+from .models import Disease
+from users.models import Profile
+import pandas as pd
+import json
 
 def index(request):
     return HttpResponse("Hello, world. You're at the portal index.")
@@ -20,7 +23,37 @@ def get_disease_data(request):
     if request.method == 'POST':
         form = DiseaseForm(request.POST)
         if form.is_valid():
-            form.save()
+            
+            cd = form.cleaned_data
+
+            current_user = request.user.id
+
+            d = Disease(
+                user_id = Profile.objects.get(user=current_user),
+                name = cd['name'],
+                description = cd['description'],
+                symptoms = cd['symptoms'],
+                intensity = cd['intensity'],
+                start_date = cd['start_date']
+            )
+            d.save()
+
         else:
             form = DiseaseForm()
     return render(request, 'portal/input_diseases.html', {'form' : form})
+
+
+from django_pandas.io import read_frame
+
+def medtent(request):
+    qs = Disease.objects.all()
+    df = read_frame(qs)
+
+    # parsing the DataFrame in json format.
+    json_records = df.reset_index().to_json(orient ='records')
+    data = []
+    data = json.loads(json_records)
+    context = {'d': data}
+
+    return render(request, 'portal/medtent.html', context)
+    

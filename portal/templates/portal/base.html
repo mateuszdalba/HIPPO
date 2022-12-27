@@ -25,8 +25,8 @@
       <nav class="navbar navbar-expand-md navbar-dark py-0" style="background-color: #051c3cd7;">
         {% if user.is_authenticated %}
           <div class="navbar-nav">
-            <a class="nav-link" href="{% url 'get_disease_data' %}">Diseases</a>
-            <a class="nav-item nav-link" href="#">XXX</a>
+            <a class="nav-link" href="{% url 'get_disease_data' %}">AddDiseases</a>
+            <a class="nav-item nav-link" href="{% url 'medtent' %}">Medtent</a>
           </div>
           <div class="mx-auto order-0">
             <a class="navbar-brand mx-auto" href="{% url 'home' %}">Hippo</a>
