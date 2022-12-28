@@ -6,6 +6,7 @@ from .models import Disease
 from users.models import Profile
 import pandas as pd
 import json
+from django.contrib import messages
 
 def index(request):
     return HttpResponse("Hello, world. You're at the portal index.")
@@ -19,9 +20,10 @@ def home(request):
 def get_disease_data(request):
     form_class = DiseaseForm
     form = form_class(request.POST or None)
-
+    
     if request.method == 'POST':
         form = DiseaseForm(request.POST)
+
         if form.is_valid():
             
             cd = form.cleaned_data
@@ -38,6 +40,8 @@ def get_disease_data(request):
             )
             d.save()
 
+            messages.success(request, 'Successfully added new disease in database!')
+           
         else:
             form = DiseaseForm()
     return render(request, 'portal/input_diseases.html', {'form' : form})
