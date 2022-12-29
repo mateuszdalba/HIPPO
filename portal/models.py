@@ -14,7 +14,6 @@ class Disease(models.Model):
         return self.name
 
 
-
 class Medicine(models.Model):
     """ Class representing different medicine that is taken """
     user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)

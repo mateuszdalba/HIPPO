@@ -132,7 +132,7 @@ LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
 
 #MEDIA_ROOT is full path to a directory where uploaded files are stored. Usually we store such files by creating a directory inside the project's base directory.
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #MEDIA_URL is the base URL to serve media files. This is what lets us access the media through our web browser.
 MEDIA_URL = '/media/'

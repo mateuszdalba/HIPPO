@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .forms import DiseaseForm
 from .models import Disease
@@ -7,6 +7,8 @@ from users.models import Profile
 import pandas as pd
 import json
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
+#from django.core.urlresolvers import reverse
 
 def index(request):
     return HttpResponse("Hello, world. You're at the portal index.")
@@ -60,4 +62,21 @@ def medtent(request):
     context = {'d': data}
 
     return render(request, 'portal/medtent.html', context)
+
+
+def delete_disease(request, id):
+    disease = Disease.objects.get(id=id)
+
+    if request.method == 'POST':
+        #delete disease from database
+        disease.delete()
+        #redirect to disease list
+        return redirect('medtent')
+
+    # no need for an `else` here. If it's a GET request, just continue
+
+    
+    return render(request, 
+                'portal/disease_delete.html',
+                {'disease':disease})
     

@@ -21,31 +21,52 @@
 
 <body>
     <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark py-0" style="background-color: #051c3cd7;">
+      <nav class="navbar navbar-expand-md navbar-dark py-1" style="background-color: #051c3cd7;">
         {% if user.is_authenticated %}
           <div class="navbar-nav">
-            <a class="nav-link" href="{% url 'get_disease_data' %}">AddDiseases</a>
-            <a class="nav-item nav-link" href="{% url 'medtent' %}">Medtent</a>
+            <a class="nav-link" href="#">AboutThisApp</a>
+            <a class="nav-item nav-link" href="#">AboutAuthor</a>
           </div>
+
           <div class="mx-auto order-0">
             <a class="navbar-brand mx-auto" href="{% url 'home' %}">Hippo</a>
           </div>
 
           <div class="navbar-nav">
-          <a class="nav-item nav-link " href="#">xxx</a>  
           <a class="nav-item nav-link " href="{% url 'profile' %}">Profile</a>
           <a class="nav-item nav-link " href="{% url 'logout' %}">Logout</a>
           </div>
-        {% else %}
-        <div class="mx-auto order-0">
-          <a class="navbar-brand mx-auto" href="{% url 'index' %}">Hippo</a>
+      </nav>
+
+      <nav class="navbar navbar-expand-md navbar-dark py-0" style="background-color: #1bbc7f;"> 
+
+        <div class="navbar-nav">
+          <a class="nav-link" href="#">Predict Stroke</a>
+          <a class="nav-item nav-link" href="#">Your Therapist</a>
+          <a class="nav-link" href="{% url 'get_disease_data' %}">AddDiseases</a>
+          <a class="nav-link" href="#">AddMedicine</a>
+          <a class="nav-item nav-link" href="{% url 'medtent' %}">Medtent</a>
         </div>
-          <div class="navbar-nav">
-            <a class="nav-item nav-link " href="{% url 'login' %}">Login</a>
-            <a class="nav-item nav-link " href="{% url 'register' %}">Register</a>
-          </div>
+
+    
+        {% else %}
+        <div class="navbar-nav">
+          <a class="nav-link" href="#">AboutThisApp</a>
+          <a class="nav-item nav-link" href="#">AboutAuthor</a>
+        </div>
+
+        <div class="mx-auto order-0">
+          <a class="navbar-brand mx-auto" href="{% url 'home' %}">Hippo</a>
+        </div>
+
+        <div class="navbar-nav">
+          <a class="nav-item nav-link " href="{% url 'login' %}">Login</a>
+          <a class="nav-item nav-link " href="{% url 'register' %}">Register</a>
+        </div>
+  
         {% endif %}   
-  </nav>
+
+    </nav>
   </header>
   
   

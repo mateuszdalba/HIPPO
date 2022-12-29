@@ -1,30 +1,19 @@
 <!-- Write HTML code here -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>TableView - Startup</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-</head>
-<body>
- 
-<div class="container">
-  <a class="nav-link" href="{% url 'home' %}">Go back</a>
+{% extends "portal/base.html" %}
 
+{% block page_content %}
+
+<div class="container">
   <h2 class="text-center"><u>Diseases Table</u></h2><br>            
   <table class="table table-dark table-striped">
     <thead>
       <tr>
-        <th>user_id</th>
-        <th>name</th>
-        <th>description</th>
-        <th>symptoms</th>
-        <th>intensity</th>
-        <th>start_date</th>
+        <th>User Id</th>
+        <th>Disease Name</th>
+        <th>Description</th>
+        <th>Symptoms</th>
+        <th>Intensity</th>
+        <th>Start Date</th>
       </tr>
     </thead>
     <tbody>
@@ -38,7 +27,14 @@
         <td>{{i.symptoms}}</td>
         <td>{{i.intensity}}</td>
         <td>{{i.start_date}}</td>
+        <td> 
+          <form action="{% url 'delete_disease' id=i.id %}" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-default btn-danger" type="submit"><i class="fa fa-trash">Delete</i></button>
+          </form>
+        </td> 
       </tr>
+
     {% endfor %}
     {% endif %}
     </tbody>
@@ -47,3 +43,4 @@
   
 </body>
 </html>
+{% endblock %}
