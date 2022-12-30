@@ -3,7 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .forms import DiseaseForm, MedicineForm
 from .models import Disease, Medicine
-from users.models import Profile
+from forecasting.models import Stats
+from users.models import Profile, User
 import pandas as pd
 import json
 from django.contrib import messages
@@ -16,9 +17,27 @@ def index(request):
 
 @login_required
 def home(request):
-    return render(request, 'portal/home.html')
 
+    #Users last login
+    user = User.objects.get(username=request.user)
+    last_login = user.last_login
 
+    #Your last updated disease
+    current_user = request.user.id
+    latest_disease = Disease.objects.filter(user_id=current_user).latest('name')
+
+    #Last updated medicine
+    latest_medicine = Medicine.objects.filter(user_id=current_user).latest('name')
+
+    #Last predicted stroke
+    latest_stroke_prob = Stats.objects.filter(user_id=current_user).latest('stroke_prob')
+    latest_stroke_lbl = Stats.objects.filter(user_id=current_user).latest('stroke_lbl')
+
+    return render(request, 'portal/home.html', {'last_login':last_login,
+                                                'latest_disease':latest_disease,
+                                                'latest_medicine':latest_medicine,
+                                                'latest_stroke_prob':latest_stroke_prob,
+                                                'latest_stroke_lbl':latest_stroke_lbl})
 
 def get_disease_data(request):
     """ Method to get Disease from User form """

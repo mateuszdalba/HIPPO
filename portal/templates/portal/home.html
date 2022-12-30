@@ -7,14 +7,33 @@
     <h1> Home Page</h1>
 </div>
 
-<div class="d-flex justify-content-center">
-ToDo: <br>
 
-- bloodtesty od czasu <br>
-- robisz testy / badania i sobie to wklepujesz do apki <br>
-- ocr do recepty lekarskiej <br>
-- ocr do zaleceń medycznych <br>
-- model do przewidywania zawału / Stroke
+<!-- User Last Login -->
+<div>
+<h2>Last login: </h2>
+{{ last_login }}
+</div>
+
+<!-- User Last Inputed Disease -->
+<div>
+<h2>Your latest disease:</h2>
+{{ latest_disease }}
+</div>
+
+
+<!-- User Last Inputed Medicine -->
+<div>
+<h2>Your latest medicine:</h2>
+{{ latest_medicine }}
+</div>
+
+<div>
+<h2>Your latest risk/probability of stroke</h2>
+    {{ latest_stroke_prob }}
+</div>
+<div>
+<h2>Your latest classification of stroke</h2>
+    {{ latest_stroke_lbl }}
 </div>
 
 
