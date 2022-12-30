@@ -19,7 +19,6 @@ class Medicine(models.Model):
     user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=300)
-
     dose = models.DecimalField(max_digits=5, decimal_places=2, default=0.0)
     unit = models.CharField(max_length=20)
 

@@ -21,6 +21,7 @@ from django.conf import settings
 urlpatterns = [
     path('', include('portal.urls')),
     path('users/', include('users.urls')),
+    path('forecasting/', include('forecasting.urls')),
     path('admin/', admin.site.urls),
     ]
 

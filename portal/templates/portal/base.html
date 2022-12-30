@@ -10,12 +10,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     
-    <link rel = "icon" href = "https://cdn-icons-png.flaticon.com/512/1518/1518965.png" type = "image/x-icon">
+    <!-- Warlock Icon -->
+    <link rel = "icon" href = "https://www.shutterstock.com/image-vector/wizard-warlock-logo-black-white-600w-1107752687.jpg" type = "image/x-icon">
 
     {% if title %}
-        <title> Hippo  - {{ title }}</title>
+        <title> Warlock  - {{ title }}</title>
     {% else %}
-        <title> Hippo </title>
+        <title> Warlock </title>
     {% endif %}
 </head>
 
@@ -25,11 +26,10 @@
         {% if user.is_authenticated %}
           <div class="navbar-nav">
             <a class="nav-link" href="#">AboutThisApp</a>
-            <a class="nav-item nav-link" href="#">AboutAuthor</a>
           </div>
 
           <div class="mx-auto order-0">
-            <a class="navbar-brand mx-auto" href="{% url 'home' %}">Hippo</a>
+            <a class="navbar-brand mx-auto" href="{% url 'home' %}">Warlock</a>
           </div>
 
           <div class="navbar-nav">
@@ -41,10 +41,10 @@
       <nav class="navbar navbar-expand-md navbar-dark py-0" style="background-color: #1bbc7f;"> 
 
         <div class="navbar-nav">
-          <a class="nav-link" href="#">Predict Stroke</a>
+          <a class="nav-link" href="{% url 'get_stroke_data' %}">Predict Stroke</a>
           <a class="nav-item nav-link" href="#">Your Therapist</a>
           <a class="nav-link" href="{% url 'get_disease_data' %}">AddDiseases</a>
-          <a class="nav-link" href="#">AddMedicine</a>
+          <a class="nav-link" href="{% url 'get_medicine_data' %}">AddMedicine</a>
           <a class="nav-item nav-link" href="{% url 'medtent' %}">Medtent</a>
         </div>
 
@@ -52,11 +52,10 @@
         {% else %}
         <div class="navbar-nav">
           <a class="nav-link" href="#">AboutThisApp</a>
-          <a class="nav-item nav-link" href="#">AboutAuthor</a>
         </div>
 
         <div class="mx-auto order-0">
-          <a class="navbar-brand mx-auto" href="{% url 'home' %}">Hippo</a>
+          <a class="navbar-brand mx-auto" href="{% url 'home' %}">Warlock</a>
         </div>
 
         <div class="navbar-nav">

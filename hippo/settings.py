@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'forecasting',
     'portal',
     'users',
     'django.contrib.admin',

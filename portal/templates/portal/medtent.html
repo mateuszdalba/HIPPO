@@ -3,6 +3,8 @@
 
 {% block page_content %}
 
+<!-- Show Diseases table -->
+
 <div class="container">
   <h2 class="text-center"><u>Diseases Table</u></h2><br>            
   <table class="table table-dark table-striped">
@@ -40,7 +42,47 @@
     </tbody>
   </table>
 </div>
+
+
+<!-- Show medicine table -->
+
+<div class="container">
+  <h2 class="text-center"><u>Medicine Table</u></h2><br>            
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th>User Id</th>
+        <th>Medicine Name</th>
+        <th>Description</th>
+        <th>Dose</th>
+        <th>Unit</th>
+      </tr>
+    </thead>
+    <tbody>
+    <!-- jinja2 Technique -->
+    {% if m %}  
+    {% for i in m %}
+      <tr>
+        <td>{{i.user_id}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.description}}</td>
+        <td>{{i.dose}}</td>
+        <td>{{i.unit}}</td>
+        <td> 
+          <form action="{% url 'delete_medicine' id=i.id %}" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-default btn-danger" type="submit"><i class="fa fa-trash">Delete</i></button>
+          </form>
+        </td> 
+      </tr>
+
+    {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+</div>
+
+
   
-</body>
-</html>
+
 {% endblock %}

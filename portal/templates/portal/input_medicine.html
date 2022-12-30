@@ -1,0 +1,26 @@
+{% extends "portal/base.html" %}
+
+{% block page_content %}
+{% load crispy_forms_tags %}
+<h1>Add medicine that you are using or were using </h1>
+
+<div class="content-section">
+    <div class="form-group">
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+    {% endfor %}
+</ul>
+{% endif %}
+  
+
+{% endblock %}
