@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .forms import StrokeForm
 import pickle
 import numpy as np
+from .models import Stats
+from users.models import Profile
 
 
 # custom method for generating predictions
@@ -46,6 +48,16 @@ def get_stroke_data(request):
             #print(pred_array_)
 
             prediction, prediction_lbl = classification(pred_array_)
+
+            #Save prediction to user's database
+            current_user = request.user.id
+            d = Stats(
+                user_id = Profile.objects.get(user=current_user),
+                stroke_prob = prediction,
+                stroke_lbl = prediction_lbl,
+            )
+            d.save()
+
            
             return render(request, 'forecasting/stroke_result.html', {'prediction':prediction, 'prediction_lbl':prediction_lbl})
 
