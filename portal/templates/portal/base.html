@@ -5,11 +5,11 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
     <!-- Warlock Icon -->
     <link rel = "icon" href = "https://www.shutterstock.com/image-vector/wizard-warlock-logo-black-white-600w-1107752687.jpg" type = "image/x-icon">
 
@@ -43,7 +43,7 @@
 
         <div class="navbar-nav">
           <a class="nav-link" href="{% url 'get_stroke_data' %}">Predict Stroke</a>
-          <a class="nav-item nav-link" href="#">Your Therapist</a>
+          <a class="nav-item nav-link" href="{% url 'fasting' %}">Fasting</a>
           <a class="nav-link" href="{% url 'get_disease_data' %}">AddDiseases</a>
           <a class="nav-link" href="{% url 'get_medicine_data' %}">AddMedicine</a>
           <a class="nav-item nav-link" href="{% url 'medtent' %}">Medtent</a>

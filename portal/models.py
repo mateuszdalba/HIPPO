@@ -24,6 +24,14 @@ class Medicine(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class Fasting(models.Model):
+    """ Model created for fasting functionality """
+    user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    date_start = models.DateTimeField(null=True, blank=True)
+    date_end = models.DateTimeField(null=True, blank=True)
 
 
 

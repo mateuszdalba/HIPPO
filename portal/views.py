@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .forms import DiseaseForm, MedicineForm
-from .models import Disease, Medicine
+from .models import Disease, Medicine, Fasting
 from forecasting.models import Stats
 from users.models import Profile, User
 import pandas as pd
@@ -11,6 +11,8 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404
 #from django.core.urlresolvers import reverse
 from django_pandas.io import read_frame
+
+from datetime import datetime
 
 def index(request):
     return HttpResponse("Hello, world. You're at the portal index.")
@@ -144,3 +146,28 @@ def delete_medicine(request, id):
         #redirect to disease list
         return redirect('medtent')
     
+
+def fasting(request):
+    current_user = request.user.id
+
+    if request.GET.get('Start_Fasting') == 'Start_Fasting':
+        current_dateTime = datetime.now()
+
+        o = Fasting(
+                user_id = Profile.objects.get(user=current_user),
+                date_start = current_dateTime,
+                date_end = current_dateTime
+            )
+        
+        o.save()
+
+    if request.GET.get('End_Fasting') == 'End_Fasting':
+        current_dateTime = datetime.now()
+        
+
+        o = Fasting.objects.latest('date_start')
+        o.date_end = current_dateTime
+        o.save()
+      
+
+    return render(request, 'portal/fasting.html')
